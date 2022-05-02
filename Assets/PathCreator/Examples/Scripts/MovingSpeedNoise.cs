@@ -21,7 +21,7 @@ public class MovingSpeedNoise : MonoBehaviour
     void Update()
     {
         movingSpd += acc;
-        pf.speed = movingSpd;
+        pf.speed = -movingSpd;
         if (movingSpd > maxMovingSpd || movingSpd < minMovingSpd)
         {
             acc = -acc;
