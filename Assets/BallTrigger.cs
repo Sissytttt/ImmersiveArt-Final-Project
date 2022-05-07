@@ -14,7 +14,6 @@ public class BallTrigger : MonoBehaviour
     void Start()
     {
         transform.GetChild(0).gameObject.SetActive(false);
-        transform.GetChild(1).gameObject.SetActive(false);
         _ballStartTimer = ballStartTime;
         _ballEndTimer = ballEndTime;
     }
@@ -22,25 +21,19 @@ public class BallTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_ballStartTimer < 0)
+        if (_ballStartTimer < 0 && _ballEndTimer > 0)
         {
             transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(1).gameObject.SetActive(true);
+        }
+
+        else if (_ballEndTimer < 0 && _ballStartTimer < 0)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
         }
         else
         {
             _ballStartTimer -= Time.deltaTime;
-        }
-
-        if (_ballEndTimer < 0)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(false);
-        }
-        else
-        {
             _ballEndTimer -= Time.deltaTime;
         }
-
     }
 }
